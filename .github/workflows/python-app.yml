@@ -55,8 +55,10 @@ jobs:
         context: .
         push: false
         tags: "docker_image:latest"
+        outputs: type=docker,dest=/tmp/docker_image.tar
 
     - name: Upload image
-      uses: ishworkh/docker-image-artifact-upload@v2.0.1
+      uses: actions/upload-artifact@v3
       with:
-        image: "docker_image:latest"
+        name: docker_image
+        path: /tmp/docker_image.tar
