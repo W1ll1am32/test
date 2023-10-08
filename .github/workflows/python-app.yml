@@ -36,7 +36,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Testing with unittest
       run: |
-        python3 -m unittest ./tests
+        python3 -m unittest tests
 
   build_docker:
 
@@ -45,7 +45,7 @@ jobs:
     steps:
     - name: Build docker
       run: |
-        docker build . --file Dockerfile docker_image:latest
+        docker build -t docker_image:latest .
     - name: Upload image
       uses: ishworkh/docker-image-artifact-upload@v2.0.1
       with:
